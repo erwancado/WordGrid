@@ -12,7 +12,7 @@ namespace WordGrid
     {
         private static int caseSize = 130;
 
-        public GridCase(int index, int caseLeft, int caseTop, string word)
+        public GridCase(int index, int caseLeft, int caseTop)
         {
             Name = "Case" + (index).ToString();
             Size = new Size(130, 130);
@@ -20,7 +20,8 @@ namespace WordGrid
             BorderStyle = BorderStyle.FixedSingle;
             TextAlign = ContentAlignment.MiddleCenter;
             Font = new Font("Tahoma", 18, FontStyle.Bold);
-            Text = String.Empty;
+            Text = "";
+            BackColor = Color.GreenYellow;
         }
     }
 }
