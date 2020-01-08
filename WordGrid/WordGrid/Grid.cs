@@ -36,10 +36,11 @@ namespace WordGrid
 
         public void InitCases()
         {
-            
-            int indexCase = _alea.Next(0, Size-1);
-            GridCases[indexCase].Text = Word[0].ToString();
-            
+            for (int i = 0; i < Word.Length;i++)
+            {
+                int indexCase = _alea.Next(0, Size - 1);
+                GridCases[indexCase].Text = Word[i].ToString();
+            }
         }
 
         public void DisplayColors()
@@ -65,7 +66,7 @@ namespace WordGrid
             if(CurrentLength+1==Word.Length)
                 GridCases[_emptyCases[newCase]].Text= Word[CurrentLength].ToString();
             else
-                GridCases[_emptyCases[newCase]].Text = Word[_alea.Next(CurrentLength+1)].ToString();
+                GridCases[_emptyCases[newCase]].Text = Word[_alea.Next(CurrentLength-1,CurrentLength+1)].ToString();
         }
 
         public void Move(List<int> casesIndexes)
@@ -102,6 +103,7 @@ namespace WordGrid
                 {
                     if (!GridCases[casesIndexes[i + j]].Text.Equals(string.Empty))
                         values.Add(GridCases[casesIndexes[i + j]].Text);
+                    GridCases[casesIndexes[i + j]].Text = string.Empty;
                 }
                 if (values.Count != 0)
                 {
