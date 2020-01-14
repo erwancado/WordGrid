@@ -95,6 +95,7 @@ namespace WordGrid
                 casetop += gridCase.Height;
             }
             _grid.InitCases();
+            Score_Write(_score.ToString());
         }
 
         private void startGame()
@@ -144,6 +145,7 @@ namespace WordGrid
                 _nbWords++;
                 string message = "Vous avez trouvé "+_grid.Word+" !!\nScore : " + _score+"\nUn nouveau mot va arriver !";
                 MessageBox.Show(message, "WordGrid", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ScoreMax_Write(_score.ToString());
             }
             else
             {
@@ -160,6 +162,16 @@ namespace WordGrid
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             startGame();
+        }
+
+        private void Score_Write(string w)
+        {
+            Score.Text = w;
+        }
+
+        private void ScoreMax_Write(string w)
+        {
+            ScoreMax.Text = w;
         }
     }
 }
