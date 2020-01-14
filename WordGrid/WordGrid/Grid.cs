@@ -7,7 +7,7 @@ namespace WordGrid
 {
     class Grid
     {
-        private static readonly List<Color> Colors = new List<Color>() { Color.Azure,Color.GreenYellow,Color.OrangeRed, Color.Cyan, Color.Gold };
+        private static readonly List<Color> Colors = new List<Color>() { Color.Azure,Color.GreenYellow,Color.OrangeRed, Color.Cyan, Color.Gold,Color.HotPink };
         private int Size { get; }
         public List<GridCase> GridCases;
         public string Word;
@@ -40,6 +40,7 @@ namespace WordGrid
             {
                 int indexCase = _alea.Next(0, Size - 1);
                 GridCases[indexCase].Text = Word[i].ToString();
+                GridCases[indexCase].BackColor = Color.GreenYellow;
             }
         }
 

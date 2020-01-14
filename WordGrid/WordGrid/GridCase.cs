@@ -15,13 +15,13 @@ namespace WordGrid
         public GridCase(int index, int caseLeft, int caseTop)
         {
             Name = "Case" + (index).ToString();
-            Size = new Size(130, 130);
+            Size = new Size(caseSize, caseSize);
             Location = new Point(caseLeft, caseTop);
             BorderStyle = BorderStyle.FixedSingle;
             TextAlign = ContentAlignment.MiddleCenter;
             Font = new Font("Tahoma", 18, FontStyle.Bold);
             Text = "";
-            BackColor = Color.GreenYellow;
+            BackColor = Color.Azure;
         }
     }
 }

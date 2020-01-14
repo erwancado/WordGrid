@@ -23,10 +23,10 @@ namespace WordGrid
         private readonly List<string> _fiveLettersWords=new List<string>();
         private readonly List<string> _sixLettersWords = new List<string>();
         private int _nbRound;
-        private int _nbWords=0;
+        private int _nbWords;
         private bool _endOfGame;
         private bool _wordFound;
-        private int score = 0;
+        private int _score;
 
         public Display()
         {
@@ -38,21 +38,22 @@ namespace WordGrid
            startGame();
         }
 
-        private void loadDictionary()
+        private void LoadDictionary()
         {
-            string[] dictionary = File.ReadAllLines(Path.GetDirectoryName(Application.ExecutablePath) + "/dico_fr.txt");
+            
+            string[] dictionary = File.ReadAllLines(Path.GetDirectoryName(Application.ExecutablePath) + "/dico_fr.txt",Encoding.GetEncoding(1252));
             foreach (var word in dictionary)
             {
                 if(word.Length==4)
                     _fourLettersWords.Add(word);
                 if(word.Length==5)
                     _fiveLettersWords.Add(word);
-                if(word.Length==5)
+                if(word.Length==6)
                     _sixLettersWords.Add(word);
             }
         }
 
-        private string wordSelection()
+        private string WordSelection()
         {
             if (_nbWords <= 3)
             {
@@ -70,10 +71,10 @@ namespace WordGrid
                 return _sixLettersWords[wIndex];
             }
         }
-        private void initGame()
+        private void InitGame()
         {
             _wordFound = false;
-            _grid = new Grid(gridSize, wordSelection());
+            _grid = new Grid(gridSize, WordSelection());
             gridPanel.Controls.Clear();
             _endOfGame = false;
             _nbRound = 0;
@@ -98,10 +99,10 @@ namespace WordGrid
 
         private void startGame()
         {
-            loadDictionary();
+            LoadDictionary();
             _nbWords = 0;
-            score = 0;
-            initGame();
+            _score = 0;
+            InitGame();
         }
         protected override void OnKeyDown(KeyEventArgs e)
         {
@@ -125,7 +126,7 @@ namespace WordGrid
             _nbRound++;
             endGameTest();
             if(_wordFound)
-                initGame();
+                InitGame();
             else
             {
                 _grid.NewLetter();
@@ -138,9 +139,10 @@ namespace WordGrid
             
             if (_grid.CurrentLength == _grid.Word.Length)
             {
-                score += _grid.Word.Length * 1000 - _nbRound * 100;
+                _score += _grid.Word.Length * 1000 - _nbRound * 100;
                 _wordFound = true;
-                string message = "Vous avez trouvé "+_grid.Word+" !!\nScore : " + score+"\nUn nouveau mot va arriver !";
+                _nbWords++;
+                string message = "Vous avez trouvé "+_grid.Word+" !!\nScore : " + _score+"\nUn nouveau mot va arriver !";
                 MessageBox.Show(message, "WordGrid", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -148,7 +150,7 @@ namespace WordGrid
                 if (_grid.GridFull)
                 {
                     _endOfGame = true;
-                    string message = "Vous êtes bloqué : Game Over.\nScore final : "+score;
+                    string message = "Vous êtes bloqué : Game Over.\nScore final : "+_score;
                     MessageBox.Show(message, "WordGrid", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }   
             }
