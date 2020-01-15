@@ -27,6 +27,7 @@ namespace WordGrid
         private bool _endOfGame;
         private bool _wordFound;
         private int _score;
+        private int _scoreMax;
 
         public Display()
         {
@@ -35,6 +36,7 @@ namespace WordGrid
 
         private void Display_Load(object sender, EventArgs e)
         {
+           _scoreMax = 0;
            startGame();
         }
 
@@ -145,7 +147,12 @@ namespace WordGrid
                 _nbWords++;
                 string message = "Vous avez trouvé "+_grid.Word+" !!\nScore : " + _score+"\nUn nouveau mot va arriver !";
                 MessageBox.Show(message, "WordGrid", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ScoreMax_Write(_score.ToString());
+                if (_score >= _scoreMax)
+                {
+                    _scoreMax = _score;
+                    ScoreMax_Write(_scoreMax.ToString());
+                    
+                }       
             }
             else
             {
