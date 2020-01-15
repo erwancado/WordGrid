@@ -19,8 +19,8 @@ namespace WordGrid
         private readonly List<int> _upList = new List<int>() { 12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3 };
         private readonly List<int> _rightList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         private readonly List<int> _leftList = new List<int>() { 3, 2, 1, 0, 7, 6, 5, 4, 11, 10, 9, 8, 15, 14, 13, 12 };
-        private readonly List<string> _fourLettersWords=new List<string>();
-        private readonly List<string> _fiveLettersWords=new List<string>();
+        private readonly List<string> _fourLettersWords = new List<string>();
+        private readonly List<string> _fiveLettersWords = new List<string>();
         private readonly List<string> _sixLettersWords = new List<string>();
         private int _nbRound;
         private int _nbWords;
@@ -37,7 +37,9 @@ namespace WordGrid
         private void Display_Load(object sender, EventArgs e)
         {
            _scoreMax = 0;
-           startGame();
+           StartGame();
+           this.FormBorderStyle = FormBorderStyle.FixedDialog;
+           this.MaximizeBox = false;
         }
 
         private void LoadDictionary()
@@ -59,20 +61,24 @@ namespace WordGrid
         {
             if (_nbWords <= 3)
             {
-                int wIndex = new Random(DateTime.Now.Millisecond).Next(_fourLettersWords.Count-1);
+                int wIndex =
+                    new Random(DateTime.Now.Millisecond).Next(_fourLettersWords.Count-1);
                 return _fourLettersWords[wIndex];
             }
             else if (_nbWords <= 6)
             {
-                int wIndex = new Random(DateTime.Now.Millisecond).Next(_fiveLettersWords.Count - 1);
+                int wIndex =
+                    new Random(DateTime.Now.Millisecond).Next(_fiveLettersWords.Count-1);
                 return _fiveLettersWords[wIndex];
             }
             else
             {
-                int wIndex = new Random(DateTime.Now.Millisecond).Next(_sixLettersWords.Count - 1);
+                int wIndex =
+                    new Random(DateTime.Now.Millisecond).Next(_sixLettersWords.Count-1);
                 return _sixLettersWords[wIndex];
             }
         }
+
         private void InitGame()
         {
             _wordFound = false;
@@ -100,13 +106,14 @@ namespace WordGrid
             Score_Write(_score.ToString());
         }
 
-        private void startGame()
+        private void StartGame()
         {
             LoadDictionary();
             _nbWords = 0;
             _score = 0;
             InitGame();
         }
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if(_endOfGame)
@@ -127,7 +134,7 @@ namespace WordGrid
                     break;
             }
             _nbRound++;
-            endGameTest();
+            EndGameTest();
             if(_wordFound)
                 InitGame();
             else
@@ -137,7 +144,7 @@ namespace WordGrid
             }
         }
 
-        private void endGameTest()
+        private void EndGameTest()
         {
             
             if (_grid.CurrentLength == _grid.Word.Length)
@@ -145,7 +152,7 @@ namespace WordGrid
                 _score += _grid.Word.Length * 1000 - _nbRound * 100;
                 _wordFound = true;
                 _nbWords++;
-                string message = "Vous avez trouvé "+_grid.Word+" !!\nScore : " + _score+"\nUn nouveau mot va arriver !";
+                string message = "Vous avez trouvé "+_grid.Word+" !\nScore : " + _score+"\nUn nouveau mot va arriver !";
                 MessageBox.Show(message, "WordGrid", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (_score >= _scoreMax)
                 {
@@ -166,9 +173,9 @@ namespace WordGrid
             
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void Reset_Click(object sender, EventArgs e)
         {
-            startGame();
+            StartGame();
         }
 
         private void Score_Write(string w)

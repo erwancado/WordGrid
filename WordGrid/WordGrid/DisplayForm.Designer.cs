@@ -30,7 +30,7 @@
         {
             this.gridPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.Reset = new System.Windows.Forms.ToolStripButton();
             this.Score = new System.Windows.Forms.Label();
             this.ScoreMax = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,23 +52,24 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.Reset});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(780, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // Reset
             // 
-            this.toolStripButton1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.Color.Yellow;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(91, 22);
-            this.toolStripButton1.Text = "Nouvelle Partie";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.Reset.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Reset.Font = new System.Drawing.Font("Roboto Condensed", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reset.ForeColor = System.Drawing.Color.Yellow;
+            this.Reset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(134, 22);
+            this.Reset.Text = "NOUVELLE PARTIE";
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // Score
             // 
@@ -126,7 +127,7 @@
 
         private System.Windows.Forms.Panel gridPanel;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton Reset;
         private System.Windows.Forms.Label Score;
         private System.Windows.Forms.Label ScoreMax;
         private System.Windows.Forms.Label label1;

@@ -65,7 +65,7 @@ namespace WordGrid
                 
             int newCase = _alea.Next(0, _emptyCases.Count - 1);
             if(CurrentLength+1==Word.Length)
-                GridCases[_emptyCases[newCase]].Text= Word[CurrentLength].ToString();
+                GridCases[_emptyCases[newCase]].Text = Word[CurrentLength].ToString();
             else
                 GridCases[_emptyCases[newCase]].Text = Word[_alea.Next(CurrentLength-1,CurrentLength+1)].ToString();
         }
@@ -116,11 +116,7 @@ namespace WordGrid
                             GridCases[casesIndexes[i + j]].Text = values[j];
                     }
                 }
-            }
-
-            
+            }            
         }
-
-        
     }
 }
