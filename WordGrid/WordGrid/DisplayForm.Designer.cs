@@ -55,7 +55,7 @@
             this.Reset});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(780, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(780, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -63,11 +63,11 @@
             // 
             this.Reset.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Reset.Font = new System.Drawing.Font("Roboto Condensed", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Reset.ForeColor = System.Drawing.Color.Yellow;
             this.Reset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Reset.Name = "Reset";
-            this.Reset.Size = new System.Drawing.Size(134, 22);
+            this.Reset.Size = new System.Drawing.Size(182, 24);
             this.Reset.Text = "NOUVELLE PARTIE";
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
@@ -77,7 +77,7 @@
             this.Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score.Location = new System.Drawing.Point(123, 49);
             this.Score.Name = "Score";
-            this.Score.Size = new System.Drawing.Size(39, 42);
+            this.Score.Size = new System.Drawing.Size(43, 47);
             this.Score.TabIndex = 2;
             this.Score.Text = "0";
             // 
@@ -87,7 +87,7 @@
             this.ScoreMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScoreMax.Location = new System.Drawing.Point(660, 120);
             this.ScoreMax.Name = "ScoreMax";
-            this.ScoreMax.Size = new System.Drawing.Size(24, 25);
+            this.ScoreMax.Size = new System.Drawing.Size(26, 29);
             this.ScoreMax.TabIndex = 3;
             this.ScoreMax.Text = "0";
             // 
@@ -97,7 +97,7 @@
             this.label1.Font = new System.Drawing.Font("Candara", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(661, 104);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.Size = new System.Drawing.Size(54, 15);
             this.label1.TabIndex = 4;
             this.label1.Text = "RECORD";
             // 

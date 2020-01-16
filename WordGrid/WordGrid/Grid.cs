@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace WordGrid
 {
+    /// <summary>
+    /// Représente la grille du jeu
+    /// </summary>
     class Grid
     {
         private static readonly List<Color> Colors = new List<Color>() { Color.Azure,Color.GreenYellow,Color.OrangeRed, Color.Cyan, Color.Gold,Color.HotPink };
@@ -25,7 +28,10 @@ namespace WordGrid
             this.Word = word;
             ParseWord(word);
         }
-
+        /// <summary>
+        /// Découpe le mot à trouver et stocke les sous-chaînes dans une liste
+        /// </summary>
+        /// <param name="word"></param>
         private void ParseWord(string word)
         {
             for (int i = 0; i < word.Length; i++)
@@ -33,7 +39,9 @@ namespace WordGrid
                 _wordParts.Add(word.Substring(0, i + 1));
             }
         }
-
+        /// <summary>
+        /// Initialise les cases de la grille et fait apparaître des lettres de départ aléatoirement
+        /// </summary>
         public void InitCases()
         {
             for (int i = 0; i < Word.Length;i++)
@@ -43,7 +51,9 @@ namespace WordGrid
                 GridCases[indexCase].BackColor = Color.GreenYellow;
             }
         }
-
+        /// <summary>
+        /// Colore les cases en fonction de la longueur de la chaîne de caractère qu'elles contiennent
+        /// </summary>
         public void DisplayColors()
         {
             foreach (var gridCase in GridCases)
@@ -51,6 +61,9 @@ namespace WordGrid
                 gridCase.BackColor = Colors[gridCase.Text.Length];
             }
         }
+        /// <summary>
+        /// Fait apparaître une nouvelle lettre aléatoirement dans la grille, en favorisant celles nécessaires au joueur dans sa progression
+        /// </summary>
         public void NewLetter()
         {
             _emptyCases.Clear();
@@ -69,7 +82,10 @@ namespace WordGrid
             else
                 GridCases[_emptyCases[newCase]].Text = Word[_alea.Next(CurrentLength-1,CurrentLength+1)].ToString();
         }
-
+        /// <summary>
+        /// Déplace les cases dont les indices sont en paramètres et fusionne les cases dont les caractères se suivent pour fabriquer le mot
+        /// </summary>
+        /// <param name="casesIndexes"></param>
         public void Move(List<int> casesIndexes)
         {
             // on traite chaque ligne de 4 cases selon le sens bas, haut, droite ou gauche

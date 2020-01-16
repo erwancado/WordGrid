@@ -11,14 +11,23 @@ using System.Windows.Forms;
 
 namespace WordGrid
 {
+    /// <summary>
+    /// Affiche l'interface et controle le déroulement du jeu.
+    /// </summary>
     public partial class Display : Form
     {
         private Grid _grid;
         private readonly int gridSize = 16;
+        /// <summary>
+        /// Listes d'indices des cases à déplacer en fonction de la direction choisie par le joueur.
+        /// </summary>
         private readonly List<int> _downList = new List<int>() { 0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15 };
         private readonly List<int> _upList = new List<int>() { 12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3 };
         private readonly List<int> _rightList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         private readonly List<int> _leftList = new List<int>() { 3, 2, 1, 0, 7, 6, 5, 4, 11, 10, 9, 8, 15, 14, 13, 12 };
+        /// <summary>
+        /// Listes des mots stockés pour le jeu répartis par longueur entre 4 et 6 lettres. 
+        /// </summary>
         private readonly List<string> _fourLettersWords = new List<string>();
         private readonly List<string> _fiveLettersWords = new List<string>();
         private readonly List<string> _sixLettersWords = new List<string>();
@@ -33,7 +42,11 @@ namespace WordGrid
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Fixe la fenêtre et démarre le jeu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Display_Load(object sender, EventArgs e)
         {
            _scoreMax = 0;
@@ -41,7 +54,9 @@ namespace WordGrid
            this.FormBorderStyle = FormBorderStyle.FixedDialog;
            this.MaximizeBox = false;
         }
-
+        /// <summary>
+        /// Charge les mots pour le jeu depuis le dictionnaire fourni pour le projet Motus
+        /// </summary>
         private void LoadDictionary()
         {
             
@@ -56,7 +71,10 @@ namespace WordGrid
                     _sixLettersWords.Add(word);
             }
         }
-
+        /// <summary>
+        /// Choisi un mot aléatoire de 4,5 ou 6 lettres en fonction de la progression du joueur
+        /// </summary>
+        /// <returns></returns>
         private string WordSelection()
         {
             if (_nbWords <= 3)
@@ -78,7 +96,9 @@ namespace WordGrid
                 return _sixLettersWords[wIndex];
             }
         }
-
+        /// <summary>
+        /// Initialise un tour avec un nouveau mot
+        /// </summary>
         private void InitGame()
         {
             _wordFound = false;
@@ -105,7 +125,9 @@ namespace WordGrid
             _grid.InitCases();
             Score_Write(_score.ToString());
         }
-
+        /// <summary>
+        /// Démarre une partie
+        /// </summary>
         private void StartGame()
         {
             LoadDictionary();
@@ -113,7 +135,10 @@ namespace WordGrid
             _score = 0;
             InitGame();
         }
-
+        /// <summary>
+        /// Déplace les éléments de la grille en fonction de la direction choisie par le joueur puis actualise le jeu
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if(_endOfGame)
@@ -143,10 +168,12 @@ namespace WordGrid
                 _grid.DisplayColors();
             }
         }
-
+        /// <summary>
+        /// Teste si le joueur a trouvé le mot ou si il est bloqué et initialise un nouveau tour ou met fin à la partie dans ce cas
+        /// </summary>
         private void EndGameTest()
         {
-            
+            //Teste si le mot a été trouvé
             if (_grid.CurrentLength == _grid.Word.Length)
             {
                 _score += _grid.Word.Length * 1000 - _nbRound * 100;
@@ -161,6 +188,7 @@ namespace WordGrid
                     
                 }       
             }
+            //Teste si la grille est pleine et donc si la partie est terminée
             else
             {
                 if (_grid.GridFull)
@@ -172,17 +200,27 @@ namespace WordGrid
             }
             
         }
-
+        /// <summary>
+        /// Lance une nouvelle partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Reset_Click(object sender, EventArgs e)
         {
             StartGame();
         }
-
+        /// <summary>
+        /// Actualise le score en cours
+        /// </summary>
+        /// <param name="w"></param>
         private void Score_Write(string w)
         {
             Score.Text = w;
         }
-
+        /// <summary>
+        /// Actualise le score record
+        /// </summary>
+        /// <param name="w"></param>
         private void ScoreMax_Write(string w)
         {
             ScoreMax.Text = w;

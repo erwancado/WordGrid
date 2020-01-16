@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace WordGrid
 {
+    /// <summary>
+    /// Représente une case de la grille du jeu
+    /// </summary>
     class GridCase : Label
     {
         private static int caseSize = 130;
